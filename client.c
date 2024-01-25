@@ -11,7 +11,7 @@
 #include <sys/select.h>
 
 #define BUFFER_SIZE 2048
-#define PORT 1100
+#define PORT 1111
 
 int clientSocket, option;
 char buffer[BUFFER_SIZE];
@@ -36,16 +36,16 @@ int main() {
     addr_size = sizeof serverAddr;
     connect(clientSocket, (struct sockaddr *) &serverAddr, addr_size);
 
-    
+    if (selectDirectory() != 0) {
+        printf("Niepoprawny katalog\n");
+        return EXIT_FAILURE;
+    }
+
     if (pthread_create(&receiveThreadId, NULL, receiveThread, NULL) != 0) {
         printf("Utworzenie wątku się nie powiodło\n");
         return EXIT_FAILURE;
     }
 
-    if (selectDirectory() != 0) {
-        printf("Niepoprawny katalog\n");
-        return EXIT_FAILURE;
-    }
     do {
         printMenu();
         scanf("%d", &option);
