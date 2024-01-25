@@ -13,7 +13,7 @@
 
 #define MAX_CLIENTS 10
 #define BUFFER_SIZE 2048
-#define PORT 1100
+#define PORT 1111
 #define MAX_DIRECTORIES 3
 #define PATH_SIZE 128
 
